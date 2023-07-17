@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 overrides:
   react: ^18.2.0
   react-dom: ^18.2.0
@@ -746,8 +750,8 @@ importers:
         specifier: workspace:*
         version: link:../visually-hidden
       '@zag-js/focus-visible':
-        specifier: 0.10.5
-        version: 0.10.5
+        specifier: 0.12.0
+        version: 0.12.0
     devDependencies:
       '@chakra-ui/icon':
         specifier: workspace:*
@@ -1605,8 +1609,8 @@ importers:
         specifier: workspace:*
         version: link:../../utilities/shared-utils
       '@zag-js/focus-visible':
-        specifier: 0.10.5
-        version: 0.10.5
+        specifier: 0.12.0
+        version: 0.12.0
     devDependencies:
       '@chakra-ui/layout':
         specifier: workspace:*
@@ -11618,6 +11622,45 @@ packages:
       webpack: 5.73.0(@swc/core@1.3.24)(esbuild@0.14.49)
       webpack-dev-server: 4.9.3(webpack@5.73.0)
 
+  /@pmmmwh/react-refresh-webpack-plugin@0.5.7(react-refresh@0.14.0)(webpack@5.73.0):
+    resolution: {integrity: sha512-bcKCAzF0DV2IIROp9ZHkRJa6O4jy7NlnHdWL3GmcUxYWNjLXkK5kfELELwEfSP5hXPfVL/qOGMAROuMQb9GG8Q==}
+    engines: {node: '>= 10.13'}
+    peerDependencies:
+      '@types/webpack': 4.x || 5.x
+      react-refresh: '>=0.10.0 <1.0.0'
+      sockjs-client: ^1.4.0
+      type-fest: '>=0.17.0 <3.0.0'
+      webpack: '>=4.43.0 <6.0.0'
+      webpack-dev-server: 3.x || 4.x
+      webpack-hot-middleware: 2.x
+      webpack-plugin-serve: 0.x || 1.x
+    peerDependenciesMeta:
+      '@types/webpack':
+        optional: true
+      sockjs-client:
+        optional: true
+      type-fest:
+        optional: true
+      webpack-dev-server:
+        optional: true
+      webpack-hot-middleware:
+        optional: true
+      webpack-plugin-serve:
+        optional: true
+    dependencies:
+      ansi-html-community: 0.0.8
+      common-path-prefix: 3.0.0
+      core-js-pure: 3.23.5
+      error-stack-parser: 2.1.4
+      find-up: 5.0.0
+      html-entities: 2.3.3
+      loader-utils: 2.0.4
+      react-refresh: 0.14.0
+      schema-utils: 3.1.1
+      source-map: 0.7.4
+      webpack: 5.73.0(@swc/core@1.3.24)(esbuild@0.14.49)
+    dev: true
+
   /@pnpm/config.env-replace@1.1.0:
     resolution: {integrity: sha512-htyl8TWnKL7K/ESFa1oW2UB5lVDxuF5DpM7tBi6Hu2LNL3mWkIzNLG6N4zoCUP1lCKNxWy/3iu8mS8MvToGd6w==}
     engines: {node: '>=12.22.0'}
@@ -15772,18 +15815,18 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /@zag-js/dom-query@0.10.5:
-    resolution: {integrity: sha512-zm6wA5+kqU48it6afNjaUhjVSixKZruTKB23z0V1xBqKbuiLOMMOZ5oK26cTPSXtZ5CPhDNZ2Qk4pliS5n9SVw==}
+  /@zag-js/dom-query@0.12.0:
+    resolution: {integrity: sha512-2VAPD+7N9sBxwHkucQ1B2VfT/0piMvINV2OyGtNL4E7v1TMFOGRUnHuaHyi8vUClanEtLRoHUWXs7oLqla7soA==}
     dev: false
 
   /@zag-js/element-size@0.10.5:
     resolution: {integrity: sha512-uQre5IidULANvVkNOBQ1tfgwTQcGl4hliPSe69Fct1VfYb2Fd0jdAcGzqQgPhfrXFpR62MxLPB7erxJ/ngtL8w==}
     dev: false
 
-  /@zag-js/focus-visible@0.10.5:
-    resolution: {integrity: sha512-EhDHKLutMtvLFCjBjyIY6h1JoJJNXG3KJz7Dj1sh4tj4LWAqo/TqLvgHyUTB29XMHwoslFHDJHKVWmLGMi+ULQ==}
+  /@zag-js/focus-visible@0.12.0:
+    resolution: {integrity: sha512-jD0zjoOd35j8PCqdtDA4jHU5N2Usqyj1jPMAfPiAwTi5s44ioYYhqCxJmXhJ80yCE/ZOLISr2VP8zpdKMnR+mw==}
     dependencies:
-      '@zag-js/dom-query': 0.10.5
+      '@zag-js/dom-query': 0.12.0
     dev: false
 
   /JSONStream@1.3.5:
@@ -22845,7 +22888,7 @@ packages:
       '@nodelib/fs.walk': 1.2.8
       '@parcel/cache': 2.6.2(@parcel/core@2.6.2)
       '@parcel/core': 2.6.2
-      '@pmmmwh/react-refresh-webpack-plugin': 0.5.7(react-refresh@0.11.0)(webpack-dev-server@4.9.3)(webpack@5.73.0)
+      '@pmmmwh/react-refresh-webpack-plugin': 0.5.7(react-refresh@0.14.0)(webpack@5.73.0)
       '@types/http-proxy': 1.17.9
       '@typescript-eslint/eslint-plugin': 4.33.0(@typescript-eslint/parser@4.33.0)(eslint@8.19.0)(typescript@5.0.2)
       '@typescript-eslint/parser': 4.33.0(eslint@8.19.0)(typescript@5.0.2)
@@ -30701,7 +30744,7 @@ packages:
     peerDependencies:
       react: '>= 0.14.0'
     dependencies:
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.22.5
       highlight.js: 10.7.3
       lowlight: 1.20.0
       prismjs: 1.28.0
@@ -35278,7 +35321,3 @@ packages:
 
   /zwitch@1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
