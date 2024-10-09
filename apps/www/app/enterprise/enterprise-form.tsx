@@ -1,6 +1,6 @@
 "use client"
 
-import { useUpdateEffect } from "@chakra-ui/hooks"
+import { useUpdateEffect } from "@/lib/use-update-effect"
 import { Button, Card, Input, Textarea } from "@chakra-ui/react"
 import { Field } from "compositions/ui/field"
 import {
@@ -59,10 +59,10 @@ export const EnterpriseForm = () => {
               placeholder="Select your budget"
               name="budget"
               items={[
-                "$30,000 and under",
+                "$10,000 and under",
+                "$10,000 - $30,000",
                 "$30,000 - $50,000",
-                "$50,000 - $100,000",
-                "$100,000 and above",
+                "$50,000 and above",
               ]}
             />
           </NativeSelectRoot>

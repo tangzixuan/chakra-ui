@@ -1,7 +1,7 @@
 "use client"
 
+import type { Assign } from "@ark-ui/react"
 import { Dialog as ArkDialog } from "@ark-ui/react/dialog"
-import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -22,6 +22,23 @@ export { useDialogStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface DialogRootProviderBaseProps
+  extends Assign<ArkDialog.RootProviderProps, SlotRecipeProps<"dialog">>,
+    UnstyledProp {}
+
+export interface DialogRootProviderProps extends DialogRootProviderBaseProps {
+  children: React.ReactNode
+}
+
+export const DialogRootProvider = withRootProvider<DialogRootProviderProps>(
+  ArkDialog.RootProvider,
+  {
+    defaultProps: { unmountOnExit: true, lazyMount: true },
+  },
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface DialogRootBaseProps
   extends Assign<ArkDialog.RootProps, SlotRecipeProps<"dialog">>,
     UnstyledProp {}
@@ -34,7 +51,9 @@ export const DialogRoot = withRootProvider<DialogRootProps>(ArkDialog.Root, {
   defaultProps: { unmountOnExit: true, lazyMount: true },
 })
 
-export const DialogRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const DialogPropsProvider =
   PropsProvider as React.Provider<DialogRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -137,3 +156,9 @@ export const DialogHeader = withContext<HTMLDivElement, DialogHeaderProps>(
   "div",
   "header",
 )
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const DialogContext = ArkDialog.Context
+
+export interface DialogOpenChangeDetails extends ArkDialog.OpenChangeDetails {}

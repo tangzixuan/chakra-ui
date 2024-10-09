@@ -1,6 +1,6 @@
-import { mapEntries } from "@chakra-ui/utils"
 import { numberInputAnatomy } from "../../anatomy"
 import { defineSlotRecipe, defineStyle } from "../../styled-system"
+import { mapEntries } from "../../utils"
 import { inputRecipe } from "./input"
 
 const triggerStyle = defineStyle({
@@ -10,16 +10,17 @@ const triggerStyle = defineStyle({
   alignItems: "center",
   flex: 1,
   userSelect: "none",
+  cursor: "button",
   lineHeight: "1",
   color: "fg.subtle",
   _disabled: {
     opacity: "0.5",
   },
   _hover: {
-    bg: { base: "gray.50", _dark: "gray.400/10" },
+    bg: { _light: "gray.50", _dark: "gray.400/10" },
   },
   _active: {
-    bg: { base: "gray.100", _dark: "gray.400/20" },
+    bg: { _light: "gray.100", _dark: "gray.400/20" },
   },
 })
 
@@ -57,6 +58,11 @@ export const numberInputSlotRecipe = defineSlotRecipe({
     decrementTrigger: {
       ...triggerStyle,
       borderBottomEndRadius: "var(--stepper-radius)",
+    },
+    valueText: {
+      fontWeight: "medium",
+      fontFeatureSettings: "pnum",
+      fontVariantNumeric: "proportional-nums",
     },
   },
   variants: {

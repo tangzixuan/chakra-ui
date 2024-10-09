@@ -1,7 +1,7 @@
 "use client"
 
+import type { Assign } from "@ark-ui/react"
 import { Popover as ArkPopover } from "@ark-ui/react/popover"
-import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -19,6 +19,26 @@ const {
 } = createSlotRecipeContext({ key: "actionBar" })
 
 export { useActionBarStyles }
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface ActionBarRootProviderBaseProps
+  extends Assign<
+      ArkPopover.RootProviderBaseProps,
+      SlotRecipeProps<"actionBar">
+    >,
+    UnstyledProp {}
+
+export interface ActionBarRootProviderProps
+  extends ActionBarRootProviderBaseProps {}
+
+export const ActionBarRootProvider =
+  withRootProvider<ActionBarRootProviderBaseProps>(ArkPopover.Root, {
+    defaultProps: {
+      lazyMount: true,
+      unmountOnExit: true,
+    },
+  })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -42,7 +62,9 @@ export const ActionBarRoot = withRootProvider<ActionBarRootProps>(
   },
 )
 
-export const ActionBarRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const ActionBarPropsProvider =
   PropsProvider as React.Provider<ActionBarRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -92,3 +114,10 @@ export const ActionBarCloseTrigger = withContext<
   HTMLButtonElement,
   ActionBarCloseTriggerProps
 >(ArkPopover.CloseTrigger, "closeTrigger", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const ActionBarContext = ArkPopover.Context
+
+export interface ActionBarOpenChangeDetails
+  extends ArkPopover.OpenChangeDetails {}

@@ -12,23 +12,25 @@ guides for these frameworks
 
 <Card title="Next.js" href="/docs/get-started/frameworks/next-app" icon="nextjs">
 
-Easily add Chakra UI with Next.js app directory
-
-</Card>
-
-<Card title="Remix" href="/docs/get-started/frameworks/remix" icon="remix">
-
-Use Chakra UI in your Remix application
+Easily add Chakra UI with Next.js app
 
 </Card>
 
 <Card title="Vite" href="/docs/get-started/frameworks/vite" icon="vite">
 
-Use Chakra UI in your Vite application
+Use Chakra UI in with Vite
+
+</Card>
+
+<Card title="Stackblitz" href="https://stackblitz.com/edit/chakra-ui-v3" icon="stackblitz">
+
+Try Chakra UI in Stackblitz sandbox
 
 </Card>
 
 :::
+
+> The minimum node version required is Node.20.x
 
 ## Installation
 
@@ -39,7 +41,7 @@ To manually set up Chakra UI in your project, follow the steps below.
 ### Install `@chakra-ui/react`
 
 ```bash
-npm i @chakra-ui/react @emotion/react
+npm i @chakra-ui/react@next @emotion/react
 ```
 
 ### Add snippets
@@ -53,16 +55,22 @@ npx @chakra-ui/cli@next snippet add
 
 ### Setup provider
 
-Wrap your application with the `ChakraProvider` at the root of your application.
+Wrap your application with the `Provider` component generated in the
+`components/ui/provider` component at the root of your application.
+
+This provider composes the following:
+
+- `ChakraProvider` from `@chakra-ui/react` for the styling system
+- `ThemeProvider` from `next-themes` for color mode
 
 ```jsx
-import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
+import { Provider } from "@/components/ui/provider"
 
 function App({ Component, pageProps }) {
   return (
-    <ChakraProvider system={defaultSystem}>
+    <Provider>
       <Component {...pageProps} />
-    </ChakraProvider>
+    </Provider>
   )
 }
 ```
@@ -77,7 +85,10 @@ tsconfig file to include the following options:
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   }
 }
 ```

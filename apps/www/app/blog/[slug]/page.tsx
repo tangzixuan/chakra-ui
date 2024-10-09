@@ -6,25 +6,41 @@ import {
   Container,
   HStack,
   Heading,
-  Separator,
   Span,
   Stack,
   Text,
 } from "@chakra-ui/react"
 import { Avatar } from "compositions/ui/avatar"
+import { Metadata } from "next"
 import { notFound } from "next/navigation"
+
+interface Props {
+  params: { slug: string[] }
+}
 
 export const generateStaticParams = async () => {
   return blogs.map((blog) => ({ slug: blog.slug.replace("blog/", "") }))
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+export const generateMetadata = ({ params }: Props): Metadata => {
+  const blog = blogs.find((blog) => blog.slug === `blog/${params.slug}`)
+
+  return {
+    title: blog?.title,
+    description: blog?.description,
+    openGraph: {
+      images: `/og?title=${blog?.title}&category=${blog?.type}`,
+    },
+  }
+}
+
+export default function BlogPostPage({ params }: Props) {
   const blog = blogs.find((blog) => blog.slug === `blog/${params.slug}`)
   if (!blog) return notFound()
 
   return (
-    <Container pb="20" maxW="5xl">
-      <Stack py="8" gap="6">
+    <Container flex="1" pb="20" maxW="5xl">
+      <Stack py="8" gap="6" mb="6">
         <HStack>
           <Badge
             variant="subtle"
@@ -35,14 +51,12 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             {blog.type}
           </Badge>
           <Span color="fg.subtle">·</Span>
-          {formatBlogDate(blog.publishedAt)}
+          <Text fontSize="sm" color="fg.subtle">
+            {formatBlogDate(blog.publishedAt)}
+          </Text>
         </HStack>
         <Heading size="4xl">{blog.title}</Heading>
-        <Text color="fg.subtle">{blog.description}</Text>
         <Stack mt="4" gap="3">
-          <Text color="fg.subtle" fontSize="sm">
-            Posted by
-          </Text>
           <HStack>
             {blog.authors.map((authorId) => {
               const author = getBlogAuthor(authorId)
@@ -50,7 +64,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 <HStack key={author.name} gap="4">
                   <Avatar src={author.image} name={author.name} />
                   <Stack gap="0" fontSize="sm">
-                    <Text>{author.name}</Text>
+                    <Text fontWeight="medium">{author.name}</Text>
                     <Text color="fg.subtle">{author.x.username}</Text>
                   </Stack>
                 </HStack>
@@ -59,7 +73,6 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </HStack>
         </Stack>
       </Stack>
-      <Separator my="10" />
       <MDXContent code={blog.content} />
     </Container>
   )

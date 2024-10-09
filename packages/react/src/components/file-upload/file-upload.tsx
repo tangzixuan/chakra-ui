@@ -1,11 +1,16 @@
 "use client"
 
-import { FileUpload as ArkFileUpload } from "@ark-ui/react/file-upload"
-import type { Assign } from "@chakra-ui/utils"
+import type { Assign } from "@ark-ui/react"
+import {
+  FileUpload as ArkFileUpload,
+  useFileUploadContext,
+} from "@ark-ui/react/file-upload"
+import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
+  chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
 
@@ -22,6 +27,23 @@ export { useFileUploadStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface FileUploadRootProviderBaseProps
+  extends Assign<
+      ArkFileUpload.RootProviderBaseProps,
+      SlotRecipeProps<"fileUpload">
+    >,
+    UnstyledProp {}
+
+export interface FileUploadRootProviderProps
+  extends HTMLChakraProps<"div", FileUploadRootProviderBaseProps> {}
+
+export const FileUploadRootProvider = withProvider<
+  HTMLDivElement,
+  FileUploadRootProviderProps
+>(ArkFileUpload.RootProvider, "root", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface FileUploadRootBaseProps
   extends Assign<ArkFileUpload.RootBaseProps, SlotRecipeProps<"fileUpload">>,
     UnstyledProp {}
@@ -35,8 +57,38 @@ export const FileUploadRoot = withProvider<HTMLDivElement, FileUploadRootProps>(
   { forwardAsChild: true },
 )
 
-export const FileUploadRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const FileUploadPropsProvider =
   PropsProvider as React.Provider<FileUploadRootBaseProps>
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface FileUploadClearTriggerProps
+  extends HTMLChakraProps<"button"> {}
+
+export const FileUploadClearTrigger = forwardRef<
+  HTMLButtonElement,
+  FileUploadClearTriggerProps
+>(function FileUploadClearTrigger(props, ref) {
+  const fileUpload = useFileUploadContext()
+  return (
+    <chakra.button
+      ref={ref}
+      type="button"
+      data-scope="file-upload"
+      data-part="clear-trigger"
+      aria-label="Clear selected files"
+      hidden={fileUpload.acceptedFiles.length === 0}
+      {...props}
+      onClick={(event) => {
+        props.onClick?.(event)
+        if (event.defaultPrevented) return
+        fileUpload.clearFiles()
+      }}
+    />
+  )
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -140,3 +192,17 @@ export const FileUploadTrigger = withContext<
   HTMLButtonElement,
   FileUploadTriggerProps
 >(ArkFileUpload.Trigger, "trigger", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const FileUploadContext = ArkFileUpload.Context
+export const FileUploadHiddenInput = ArkFileUpload.HiddenInput
+
+export interface FileUploadFileAcceptDetails
+  extends ArkFileUpload.FileAcceptDetails {}
+
+export interface FileUploadFileRejectDetails
+  extends ArkFileUpload.FileRejectDetails {}
+
+export interface FileUploadFileChangeDetails
+  extends ArkFileUpload.FileChangeDetails {}

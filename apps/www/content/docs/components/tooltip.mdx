@@ -3,11 +3,10 @@ title: Tooltip
 description:
   Used to display additional information when a user hovers over an element.
 links:
-  [
-    { title: "Source", url: "#" },
-    { title: "Storybook", url: "#" },
-    { title: "Recipe", url: "#" },
-  ]
+  source: components/tooltip
+  storybook: components-tooltip--basic
+  recipe: tooltip
+  ark: https://ark-ui.com/react/docs/components/tooltip
 ---
 
 <ExampleTabs name="tooltip-basic" />
@@ -69,12 +68,20 @@ Use the `open` and `onOpenChange` prop to control the visibility of the tooltip.
 
 ### Interactive
 
-Use the `interactive` prop to copy the tooltip content.
+Use the `interactive` prop to keep the tooltip open when interacting with its
+content.
 
 <ExampleTabs name="tooltip-with-interactive" />
 
 ### Disabled
 
-Use the `disabled` prop to disable the tooltip.
+Use the `disabled` prop to disable the tooltip. When disabled, the tooltip will
+not be shown.
 
 <ExampleTabs name="tooltip-with-disabled" />
+
+## Props
+
+### Root
+
+<PropTable component="tooltip" part="root" />

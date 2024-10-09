@@ -13,6 +13,7 @@ import { aspectRatios } from "./tokens/aspect-ratios"
 import { blurs } from "./tokens/blurs"
 import { borders } from "./tokens/borders"
 import { colors } from "./tokens/colors"
+import { cursor } from "./tokens/cursor"
 import { durations } from "./tokens/durations"
 import { easings } from "./tokens/easings"
 import { fontSizes } from "./tokens/font-sizes"
@@ -29,7 +30,7 @@ import { zIndices } from "./tokens/z-indices"
 export const defaultThemeConfig = defineConfig({
   preflight: true,
   cssVarsPrefix: "chakra",
-  cssVarsRoot: ":where(:root, :host)",
+  cssVarsRoot: ":where(html, .chakra-theme)",
   globalCss: globalCss,
   theme: {
     breakpoints: breakpoints,
@@ -51,6 +52,7 @@ export const defaultThemeConfig = defineConfig({
       spacing,
       sizes,
       zIndex: zIndices,
+      cursor,
     },
     semanticTokens: {
       colors: semanticColors,

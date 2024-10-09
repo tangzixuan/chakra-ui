@@ -3,7 +3,8 @@ export {
   FieldsetErrorText,
   FieldsetHelperText,
   FieldsetLegend,
-  FieldsetControl,
+  FieldsetContent,
+  FieldsetContext,
 } from "./fieldset"
 
 export type {
@@ -11,9 +12,9 @@ export type {
   FieldsetErrorTextProps,
   FieldsetHelperTextProps,
   FieldsetLegendProps,
-  FieldsetControlProps,
+  FieldsetContentProps,
 } from "./fieldset"
 
-export { FieldsetContext, useFieldsetContext } from "@ark-ui/react/fieldset"
+export { useFieldsetContext } from "@ark-ui/react/fieldset"
 
 export * as Fieldset from "./namespace"

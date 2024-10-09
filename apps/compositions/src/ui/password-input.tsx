@@ -1,13 +1,20 @@
 "use client"
 
-import { mergeRefs, useControllableState } from "@chakra-ui/hooks"
 import type {
   ButtonProps,
   GroupProps,
   InputProps,
   StackProps,
 } from "@chakra-ui/react"
-import { Box, HStack, IconButton, Input, Stack } from "@chakra-ui/react"
+import {
+  Box,
+  HStack,
+  IconButton,
+  Input,
+  Stack,
+  mergeRefs,
+  useControllableState,
+} from "@chakra-ui/react"
 import { forwardRef, useRef } from "react"
 import { LuEye, LuEyeOff } from "react-icons/lu"
 import { InputGroup } from "./input-group"
@@ -115,7 +122,7 @@ export const PasswordStrengthMeter = forwardRef<
             flex="1"
             rounded="sm"
             data-selected={index < value ? "" : undefined}
-            layerStyle="fill.muted"
+            layerStyle="fill.subtle"
             colorPalette="gray"
             _selected={{
               colorPalette,

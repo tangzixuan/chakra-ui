@@ -1,7 +1,7 @@
 "use client"
 
+import type { Assign } from "@ark-ui/react"
 import { Popover as ArkPopover } from "@ark-ui/react/popover"
-import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -22,6 +22,20 @@ export { usePopoverStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface PopoverRootProviderBaseProps
+  extends Assign<ArkPopover.RootProviderBaseProps, SlotRecipeProps<"popover">>,
+    UnstyledProp {}
+
+export interface PopoverRootProviderProps extends PopoverRootProviderBaseProps {
+  children: React.ReactNode
+}
+
+export const PopoverRootProvider = withRootProvider<PopoverRootProviderProps>(
+  ArkPopover.RootProvider,
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface PopoverRootBaseProps
   extends Assign<ArkPopover.RootBaseProps, SlotRecipeProps<"popover">>,
     UnstyledProp {}
@@ -32,7 +46,9 @@ export interface PopoverRootProps extends PopoverRootBaseProps {
 
 export const PopoverRoot = withRootProvider<PopoverRootProps>(ArkPopover.Root)
 
-export const PopoverRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const PopoverPropsProvider =
   PropsProvider as React.Provider<PopoverRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -166,3 +182,10 @@ export const PopoverAnchor = withContext<HTMLDivElement, PopoverAnchorProps>(
   undefined,
   { forwardAsChild: true },
 )
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const PopoverContext = ArkPopover.Context
+
+export interface PopoverOpenChangeDetails
+  extends ArkPopover.OpenChangeDetails {}

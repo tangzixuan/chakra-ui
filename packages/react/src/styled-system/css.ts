@@ -6,8 +6,9 @@ import {
   memo,
   mergeWith,
   walkObject,
-} from "@chakra-ui/utils"
+} from "../utils"
 import type { SystemStyleObject } from "./css.types"
+import { sortAtRules } from "./sort-at-rules"
 import type { SystemContext } from "./types"
 
 const importantRegex = /\s*!(important)?/i
@@ -53,10 +54,10 @@ export function createCssFn(context: CssFnOptions) {
         { getKey: (prop) => conditions.expandAtRule(prop) },
       )
 
-      mergeByPath(result, selectors, transformed)
+      mergeByPath(result, selectors.flat(), transformed)
     })
 
-    return result
+    return sortAtRules(result)
   })
 }
 

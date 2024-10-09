@@ -1,5 +1,5 @@
-import type { Dict, DistributiveOmit } from "@chakra-ui/utils"
 import type { PropertiesFallback } from "csstype"
+import type { Dict, DistributiveOmit } from "../utils"
 import type {
   ConditionalValue,
   CssKeyframes,
@@ -51,6 +51,7 @@ export type TokenCategory =
   | "blurs"
   | "gradients"
   | "assets"
+  | "cursor"
   | "borderWidths"
   | "breakpoints"
   | "borderStyles"
@@ -251,9 +252,13 @@ export interface Condition {
   expandAtRule(key: string): string
 }
 
+export interface ConditionRecord {
+  [key: string]: string | string[]
+}
+
 export interface ConditionConfig {
   breakpoints: Breakpoint
-  conditions: Dict
+  conditions: ConditionRecord
 }
 
 /* -----------------------------------------------------------------------------
@@ -269,6 +274,12 @@ export type CssFn = (
   ...styles: (SystemStyleObject | undefined)[]
 ) => SystemStyleObject
 
+export interface Layers {
+  wrap(layer: CascadeLayer, styles: Dict): Dict
+  names: string[]
+  atRule: string
+}
+
 export interface SystemContext {
   $$chakra: true
   _config: SystemConfig
@@ -278,6 +289,7 @@ export interface SystemContext {
   breakpoints: Breakpoint
   properties: Set<string>
   isValidProperty(prop: string): boolean
+  normalizeValue(value: any): any
   splitCssProps<T extends SystemStyleObject>(
     props: T,
   ): [SystemStyleObject, DistributiveOmit<T, keyof SystemStyleObject>]
@@ -293,6 +305,7 @@ export interface SystemContext {
   isSlotRecipe(key: string): boolean
   hasRecipe(key: string): boolean
   token: TokenFn
+  layers: Layers
 }
 
 export interface ThemingConfig {
@@ -311,10 +324,14 @@ export interface PreflightConfig {
   preflight?: boolean | { scope?: string; level?: "parent" | "element" }
 }
 
+export type CascadeLayer = "reset" | "base" | "tokens" | "recipes"
+
 export interface SystemConfig extends PreflightConfig {
   cssVarsRoot?: string
   cssVarsPrefix?: string
   globalCss?: Record<string, SystemStyleObject>
+  disableLayers?: boolean
+  layers?: Record<CascadeLayer, string>
   theme?: ThemingConfig
   utilities?: UtilityConfig
   conditions?: Dict

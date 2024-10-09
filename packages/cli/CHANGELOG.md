@@ -1,5 +1,25 @@
 # @chakra-ui/cli
 
+## 3.0.0-next.29
+
+### Patch Changes
+
+- [`0eda15c`](https://github.com/chakra-ui/chakra-ui/commit/0eda15c6dc09fc777a0091be15416063dc4ad862)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Set process
+  setMaxListeners to improve watch mode
+
+## 3.0.0-next.28
+
+## 3.0.0-next.27
+
+## 3.0.0-next.26
+
+## 3.0.0-next.25
+
+## 3.0.0-next.24
+
+## 3.0.0-next.23
+
 ## 3.0.0-next.22
 
 ## 3.0.0-next.21

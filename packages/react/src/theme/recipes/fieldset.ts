@@ -3,25 +3,22 @@ import { defineSlotRecipe } from "../../styled-system"
 
 export const fieldsetSlotRecipe = defineSlotRecipe({
   className: "fieldset",
-  slots: [...fieldsetAnatomy.keys(), "control"],
+  slots: [...fieldsetAnatomy.keys(), "content"],
   base: {
     root: {
       display: "flex",
       flexDirection: "column",
       alignItems: "flex-start",
-      spaceY: "2",
       width: "full",
     },
-    control: {
+    content: {
       display: "flex",
       flexDirection: "column",
-      alignItems: "flex-start",
-      gap: "2",
+      width: "full",
     },
     legend: {
       color: "fg",
       fontWeight: "medium",
-      textStyle: "sm",
       _disabled: {
         opacity: "0.5",
       },
@@ -31,13 +28,31 @@ export const fieldsetSlotRecipe = defineSlotRecipe({
       textStyle: "sm",
     },
     errorText: {
+      display: "inline-flex",
       alignItems: "center",
       color: "fg.error",
-      display: "inline-flex",
-      fontWeight: "medium",
       gap: "2",
-      mt: "4",
+      fontWeight: "medium",
       textStyle: "sm",
     },
+  },
+
+  variants: {
+    size: {
+      sm: {
+        root: { spaceY: "4" },
+        content: { gap: "4" },
+        legend: { textStyle: "sm" },
+      },
+      md: {
+        root: { spaceY: "4" },
+        content: { gap: "6" },
+        legend: { textStyle: "md" },
+      },
+    },
+  },
+
+  defaultVariants: {
+    size: "sm",
   },
 })

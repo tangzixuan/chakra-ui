@@ -1,14 +1,14 @@
 "use client"
 
-import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import { type HTMLChakraProps, chakra } from "../../styled-system"
+import { cx } from "../../utils"
 
 export interface LinkOverlayProps extends HTMLChakraProps<"a"> {}
 
 export const LinkOverlay = forwardRef<HTMLAnchorElement, LinkOverlayProps>(
   function LinkOverlay(props, ref) {
-    const { target, rel, className, ...rest } = props
+    const { rel, className, ...rest } = props
     return (
       <chakra.a
         {...rest}

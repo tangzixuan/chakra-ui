@@ -2,11 +2,10 @@
 title: Avatar
 description: Used to represent user profile picture or initials
 links:
-  [
-    { title: "Source", url: "#" },
-    { title: "Storybook", url: "#" },
-    { title: "Recipe", url: "#" },
-  ]
+  source: components/avatar
+  storybook: components-avatar--basic
+  recipe: avatar
+  ark: https://ark-ui.com/react/docs/components/avatar
 ---
 
 <ExampleTabs name="avatar-basic" />
@@ -42,6 +41,12 @@ import { Avatar, AvatarGroup } from "@/components/ui/avatar"
 Use the `size` prop to change the size of the avatar
 
 <ExampleTabs name="avatar-with-sizes" />
+
+### Variants
+
+Use the `variant` prop to change the variant of the avatar
+
+<ExampleTabs name="avatar-with-variants" />
 
 ### Shape
 
@@ -82,3 +87,23 @@ Show a badge on the right corner of the avatar by composing the `Float` and
 `Circle` components
 
 <ExampleTabs name="avatar-with-badge" />
+
+### Manual
+
+Here's an example of how to use the `Avatar` without the snippet.
+
+<ExampleTabs name="avatar-manual" />
+
+## Props
+
+### Root
+
+<PropTable component="Avatar" part="Root" />
+
+### Fallback
+
+<PropTable component="Avatar" part="Fallback" />
+
+### Image
+
+<PropTable component="Avatar" part="Image" />

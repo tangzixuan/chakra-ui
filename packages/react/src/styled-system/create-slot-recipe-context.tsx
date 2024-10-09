@@ -1,9 +1,9 @@
 "use client"
 
-import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import { createContext } from "../create-context"
 import { mergeProps } from "../merge-props"
+import { cx } from "../utils"
 import type { SystemStyleObject } from "./css.types"
 import { EMPTY_SLOT_STYLES } from "./empty"
 import { chakra } from "./factory"
@@ -116,7 +116,7 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
     const SuperComponent = chakra(Component, {}, restOptions as any)
 
     const StyledComponent = forwardRef<any, any>((inProps, ref) => {
-      const props = mergeProps(defaultProps, usePropsContext(), inProps)
+      const props = mergeProps(defaultProps ?? {}, usePropsContext(), inProps)
       const { styles, props: rootProps, classNames } = useRecipeResult(props)
       const className = classNames[slot as keyof typeof classNames]
 

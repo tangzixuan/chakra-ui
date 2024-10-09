@@ -226,7 +226,7 @@ export interface CheckmarkVariant {
   /** @default "md" */
   size?: "sm" | "md" | "lg"
   /** @default "outline" */
-  variant?: "outline" | "subtle" | "plain"
+  variant?: "outline" | "subtle" | "plain" | "inverted"
 }
 
 export type CheckmarkVariantProps = {
@@ -239,7 +239,7 @@ export type CheckmarkVariantMap = {
 
 export interface RadiomarkVariant {
   /** @default "outline" */
-  variant?: "outline" | "subtle" | "classic"
+  variant?: "outline" | "subtle" | "classic" | "inverted"
   /** @default "md" */
   size?: "sm" | "md" | "lg"
 }
@@ -433,7 +433,7 @@ export interface CheckboxCardVariant {
   /** @default "md" */
   size?: "sm" | "md" | "lg"
   /** @default "outline" */
-  variant?: "plain" | "subtle" | "outline"
+  variant?: "surface" | "subtle" | "outline" | "solid"
 }
 
 export type CheckboxCardVariantProps = {
@@ -497,7 +497,7 @@ export interface DialogVariant {
   /** @default "outside" */
   scrollBehavior?: "inside" | "outside"
   /** @default "md" */
-  size?: "xs" | "sm" | "md" | "lg" | "xl" | "full"
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | "cover" | "full"
   /** @default "scale" */
   motionPreset?: "scale" | "slide-in-bottom" | "slide-in-top" | "slide-in-left" | "slide-in-right" | "none"
 }
@@ -588,9 +588,12 @@ export type FieldVariantMap = {
 
 // Fieldset
 
-export type FieldsetSlot = "root" | "errorText" | "helperText" | "legend" | "control"
+export type FieldsetSlot = "root" | "errorText" | "helperText" | "legend" | "content"
 
-export interface FieldsetVariant {}
+export interface FieldsetVariant {
+  /** @default "sm" */
+  size?: "sm" | "md"
+}
 
 export type FieldsetVariantProps = {
   [K in keyof FieldsetVariant]?: ConditionalValue<FieldsetVariant[K]> | undefined
@@ -829,7 +832,7 @@ export interface RadioCardVariant {
   /** @default "md" */
   size?: "sm" | "md" | "lg"
   /** @default "outline" */
-  variant?: "plain" | "subtle" | "outline"
+  variant?: "surface" | "subtle" | "outline" | "solid"
 }
 
 export type RadioCardVariantProps = {
@@ -842,7 +845,7 @@ export type RadioCardVariantMap = {
 
 // RadioGroup
 
-export type RadioGroupSlot = "root" | "label" | "item" | "itemText" | "itemControl" | "indicator"
+export type RadioGroupSlot = "root" | "label" | "item" | "itemText" | "itemControl" | "indicator" | "itemAddon" | "itemIndicator"
 
 export interface RadioGroupVariant {
   /** @default "outline" */
@@ -911,6 +914,7 @@ export type SelectSlot =
   | "root"
   | "control"
   | "valueText"
+  | "indicatorGroup"
 
 export interface SelectVariant {
   /** @default "outline" */

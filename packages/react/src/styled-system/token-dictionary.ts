@@ -2,15 +2,15 @@ import {
   type Dict,
   compact,
   createProps,
-  esc,
   isFunction,
   isObject,
   isString,
   mapObject,
   memo,
   walkObject,
-} from "@chakra-ui/utils"
+} from "../utils"
 import { cssVar } from "./css-var"
+import { esc } from "./esc"
 import { expandTokenReferences as _expandReferences } from "./expand-reference"
 import { mapToJson } from "./map-to-json"
 import {
@@ -537,6 +537,7 @@ export const tokenCategories = createProps<Record<TokenCategory, any>>()([
   "shadows",
   "spacing",
   "radii",
+  "cursor",
   "borders",
   "borderWidths",
   "borderStyles",

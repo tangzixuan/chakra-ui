@@ -11,6 +11,7 @@ export const buttonRecipe = defineRecipe({
     position: "relative",
     whiteSpace: "nowrap",
     verticalAlign: "middle",
+    cursor: "button",
     flexShrink: "0",
     outline: "0",
     lineHeight: "1.2",
@@ -18,7 +19,6 @@ export const buttonRecipe = defineRecipe({
     fontWeight: "medium",
     transitionProperty: "common",
     transitionDuration: "moderate",
-
     focusVisibleRing: "outside",
     _disabled: {
       layerStyle: "disabled",

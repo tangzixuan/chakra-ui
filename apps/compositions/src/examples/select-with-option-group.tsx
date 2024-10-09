@@ -1,10 +1,10 @@
 "use client"
 
+import { createListCollection } from "@chakra-ui/react"
 import {
   SelectContent,
   SelectItem,
   SelectItemGroup,
-  SelectItemGroupLabel,
   SelectLabel,
   SelectRoot,
   SelectTrigger,
@@ -13,15 +13,14 @@ import {
 
 export const SelectWithOptionGroup = () => {
   return (
-    <SelectRoot items={frameworks} size="sm" width="320px">
+    <SelectRoot collection={frameworks} size="sm" width="320px">
       <SelectLabel>Select framework</SelectLabel>
       <SelectTrigger>
         <SelectValueText placeholder="Select movie" />
       </SelectTrigger>
       <SelectContent>
         {categories.map((category) => (
-          <SelectItemGroup>
-            <SelectItemGroupLabel>{category.group}</SelectItemGroupLabel>
+          <SelectItemGroup key={category.group} label={category.group}>
             {category.items.map((item) => (
               <SelectItem item={item} key={item.value}>
                 {item.label}
@@ -34,20 +33,22 @@ export const SelectWithOptionGroup = () => {
   )
 }
 
-const frameworks = [
-  { label: "Naruto", value: "naruto", group: "Anime" },
-  { label: "One Piece", value: "one-piece", group: "Anime" },
-  { label: "Dragon Ball", value: "dragon-ball", group: "Anime" },
-  {
-    label: "The Shawshank Redemption",
-    value: "the-shawshank-redemption",
-    group: "Movies",
-  },
-  { label: "The Godfather", value: "the-godfather", group: "Movies" },
-  { label: "The Dark Knight", value: "the-dark-knight", group: "Movies" },
-]
+const frameworks = createListCollection({
+  items: [
+    { label: "Naruto", value: "naruto", group: "Anime" },
+    { label: "One Piece", value: "one-piece", group: "Anime" },
+    { label: "Dragon Ball", value: "dragon-ball", group: "Anime" },
+    {
+      label: "The Shawshank Redemption",
+      value: "the-shawshank-redemption",
+      group: "Movies",
+    },
+    { label: "The Godfather", value: "the-godfather", group: "Movies" },
+    { label: "The Dark Knight", value: "the-dark-knight", group: "Movies" },
+  ],
+})
 
-const categories = frameworks.reduce(
+const categories = frameworks.items.reduce(
   (acc, item) => {
     const group = acc.find((group) => group.group === item.group)
     if (group) {
@@ -57,5 +58,5 @@ const categories = frameworks.reduce(
     }
     return acc
   },
-  [] as { group: string; items: typeof frameworks }[],
+  [] as { group: string; items: (typeof frameworks)["items"] }[],
 )

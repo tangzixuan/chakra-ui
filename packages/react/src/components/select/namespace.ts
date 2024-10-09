@@ -2,42 +2,40 @@ export {
   SelectClearTrigger as ClearTrigger,
   SelectContent as Content,
   SelectControl as Control,
+  SelectIndicator as Indicator,
+  SelectIndicatorGroup as IndicatorGroup,
   SelectItem as Item,
   SelectItemGroup as ItemGroup,
   SelectItemGroupLabel as ItemGroupLabel,
+  SelectItemIndicator as ItemIndicator,
   SelectItemText as ItemText,
   SelectLabel as Label,
   SelectPositioner as Positioner,
   SelectRoot as Root,
-  SelectRootPropsProvider as RootPropsProvider,
+  SelectContext as Context,
+  SelectPropsProvider as PropsProvider,
   SelectTrigger as Trigger,
   SelectValueText as ValueText,
-  SelectIndicator as Indicator,
-  SelectItemIndicator as ItemIndicator,
 } from "./select"
 
 export type {
   SelectClearTriggerProps as ClearTriggerProps,
   SelectContentProps as ContentProps,
   SelectControlProps as ControlProps,
+  SelectIndicatorGroupProps as IndicatorGroupProps,
   SelectIndicatorProps as IndicatorProps,
-  SelectValueTextProps as ValueTextProps,
-  SelectItemIndicatorProps as ItemIndicatorProps,
   SelectItemGroupLabelProps as ItemGroupLabelProps,
   SelectItemGroupProps as ItemGroupProps,
+  SelectItemIndicatorProps as ItemIndicatorProps,
   SelectItemProps as ItemProps,
   SelectItemTextProps as ItemTextProps,
   SelectLabelProps as LabelProps,
   SelectPositionerProps as PositionerProps,
   SelectRootProps as RootProps,
+  SelectRootProviderProps as RootProviderProps,
   SelectTriggerProps as TriggerProps,
-} from "./select"
-
-export { SelectContext as Context } from "@ark-ui/react/select"
-
-export type {
   SelectHighlightChangeDetails as HighlightChangeDetails,
   SelectOpenChangeDetails as OpenChangeDetails,
   SelectValueChangeDetails as ValueChangeDetails,
-  SelectCollectionItem as CollectionItem,
-} from "@ark-ui/react/select"
+  SelectValueTextProps as ValueTextProps,
+} from "./select"

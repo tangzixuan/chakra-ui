@@ -2,11 +2,10 @@
 title: Checkbox Card
 description: Used to select or deselect options displayed within cards.
 links:
-  [
-    { title: "Source", url: "#" },
-    { title: "Storybook", url: "#" },
-    { title: "Recipe", url: "#" },
-  ]
+  source: components/checkbox-card
+  storybook: components-checkbox-card--basic
+  recipe: checkbox-card
+  ark: https://ark-ui.com/react/docs/components/checkbox
 ---
 
 <ExampleTabs name="checkbox-card-basic" />
@@ -26,21 +25,11 @@ component.
 ## Usage
 
 ```jsx
-import {
-  CheckboxCardAddon,
-  CheckboxCardControl,
-  CheckboxCardLabel,
-  CheckboxCardRoot,
-} from "@/components/ui/checkbox-card"
+import { CheckboxCard } from "@/components/ui/checkbox-card"
 ```
 
 ```jsx
-<CheckboxCardRoot>
-  <CheckboxCardControl>
-    <CheckboxCardLabel />
-  </CheckboxCardControl>
-  <CheckboxCardAddon />
-</CheckboxCardRoot>
+<CheckboxCard label="Checkbox Card" />
 ```
 
 ## Examples
@@ -80,3 +69,9 @@ Use the `CheckboxCardAddon` to add some more context to the checkbox card.
 Render custom icons within the checkbox card.
 
 <ExampleTabs name="checkbox-card-with-icon" />
+
+## Props
+
+### Root
+
+<PropTable component="CheckboxCard" part="Root" />

@@ -1,7 +1,7 @@
 "use client"
 
+import type { Assign } from "@ark-ui/react"
 import { Switch as ArkSwitch, useSwitchContext } from "@ark-ui/react/switch"
-import { type Assign, dataAttr } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
@@ -10,6 +10,7 @@ import {
   chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
+import { dataAttr } from "../../utils"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -21,6 +22,20 @@ const {
 } = createSlotRecipeContext({ key: "switch" })
 
 export { useSwitchStyles }
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface SwitchRootProviderBaseProps
+  extends Assign<ArkSwitch.RootProviderBaseProps, SlotRecipeProps<"switch">>,
+    UnstyledProp {}
+
+export interface SwitchRootProviderProps
+  extends HTMLChakraProps<"label", SwitchRootProviderBaseProps> {}
+
+export const SwitchRootProvider = withProvider<
+  HTMLLabelElement,
+  SwitchRootProviderProps
+>(ArkSwitch.RootProvider, "root", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -37,7 +52,9 @@ export const SwitchRoot = withProvider<HTMLLabelElement, SwitchRootProps>(
   { forwardAsChild: true },
 )
 
-export const SwitchRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const SwitchPropsProvider =
   PropsProvider as React.Provider<SwitchRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -116,3 +133,11 @@ export const SwitchThumbIndicator = forwardRef<
     </chakra.span>
   )
 })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const SwitchContext = ArkSwitch.Context
+export const SwitchHiddenInput = ArkSwitch.HiddenInput
+
+export interface SwitchCheckedChangeDetails
+  extends ArkSwitch.CheckedChangeDetails {}

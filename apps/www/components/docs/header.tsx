@@ -30,6 +30,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
+import { SponsorButton } from "../sponsor-button"
 import { CommandMenu } from "./command-menu"
 
 const HeaderRoot = chakra("header", {
@@ -143,11 +144,11 @@ interface HeaderVersionMenuProps {
 const HeaderVersionMenu = ({ containerRef }: HeaderVersionMenuProps) => (
   <VersionMenu
     items={[
-      { title: "v3", value: "3.1.x", url: "#" },
+      { title: "v3", value: "3.0.0", url: "#" },
       { title: "v2", value: "2.8.x", url: "https://v2.chakra-ui.com" },
       { title: "v1", value: "1.5.x", url: "https://v1.chakra-ui.com" },
     ]}
-    containerRef={containerRef}
+    portalRef={containerRef}
   />
 )
 
@@ -238,6 +239,7 @@ const HeaderMobileMenuDropdown = () => {
 const HeaderDesktopActions = () => {
   return (
     <HStack gap="2" minH="48px" flexShrink="1" minW="0">
+      <SponsorButton hideBelow="lg" />
       <HeaderVersionMenu />
       <CommandMenu
         trigger={<SearchButton width="256px" size="sm" flexShrink="1" />}

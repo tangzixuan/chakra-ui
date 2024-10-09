@@ -14,10 +14,12 @@ describe("css", () => {
       }),
     ).toMatchInlineSnapshot(`
       {
-        "&:is(:hover, [data-hover]):not(:disabled, [data-disabled])": {
-          "color": "pink !important",
-        },
         "--bg": "var(--chakra-colors-pink-400)",
+        "@media (hover: hover)": {
+          "&:is(:hover, [data-hover]):not(:disabled, [data-disabled])": {
+            "color": "pink !important",
+          },
+        },
         "@media screen and (min-width: 30rem)": {
           "padding": "20px",
         },
@@ -316,7 +318,7 @@ describe("css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
-        "&.dark, .dark &": {
+        ".dark &, .dark .chakra-theme:not(.light) &": {
           "border": "2px solid var(--chakra-colors-green-300)",
         },
         "border": "1px solid var(--chakra-colors-white)",
@@ -409,6 +411,39 @@ describe("css", () => {
       {
         "background": "var(--chakra-colors-color-palette-subtle)",
         "color": "inherit",
+      }
+    `)
+  })
+
+  test("media query order", () => {
+    const result = css({
+      flex: [undefined, undefined, 1, 5],
+      display: ["none", "none", "flex"],
+      h: "100vh",
+      minH: "200px",
+      position: "sticky",
+      top: "0",
+      borderLeft: [undefined, "2px solid red"],
+    })
+
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "@media screen and (min-width: 30rem)": {
+          "borderLeft": "2px solid red",
+          "display": "none",
+        },
+        "@media screen and (min-width: 48rem)": {
+          "display": "flex",
+          "flex": 1,
+        },
+        "@media screen and (min-width: 64rem)": {
+          "flex": 5,
+        },
+        "display": "none",
+        "height": "100vh",
+        "minHeight": "200px",
+        "position": "sticky",
+        "top": "0",
       }
     `)
   })

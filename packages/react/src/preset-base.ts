@@ -70,7 +70,10 @@ const createTransition = (value: string) => {
 }
 
 export const defaultConditions = defineConditions({
-  hover: "&:is(:hover, [data-hover]):not(:disabled, [data-disabled])",
+  hover: [
+    "@media (hover: hover)",
+    "&:is(:hover, [data-hover]):not(:disabled, [data-disabled])",
+  ],
   active:
     "&:is(:active, [data-active]):not(:disabled, [data-disabled], [data-state=open])",
   focus: "&:is(:focus, [data-focus])",
@@ -177,8 +180,8 @@ export const defaultConditions = defineConditions({
   landscape: "@media (orientation: landscape)",
   portrait: "@media (orientation: portrait)",
 
-  dark: "&.dark, .dark &",
-  light: "&.light, .light &",
+  dark: ".dark &, .dark .chakra-theme:not(.light) &",
+  light: ":root &, .light &",
   osDark: "@media (prefers-color-scheme: dark)",
   osLight: "@media (prefers-color-scheme: light)",
 
@@ -218,7 +221,15 @@ export const defaultBaseConfig = defineConfig({
     backgroundPosition: { shorthand: ["bgPos"] },
     backgroundRepeat: { shorthand: ["bgRepeat"] },
     backgroundAttachment: { shorthand: ["bgAttachment"] },
-    backgroundClip: { shorthand: ["bgClip"] },
+    backgroundClip: {
+      shorthand: ["bgClip"],
+      values: ["text"],
+      transform(value) {
+        return value === "text"
+          ? { color: "transparent", backgroundClip: "text" }
+          : { backgroundClip: value }
+      },
+    },
     backgroundGradient: {
       shorthand: ["bgGradient"],
       values(theme) {
@@ -1049,6 +1060,7 @@ export const defaultBaseConfig = defineConfig({
       values: "colors",
       transform: createColorMixTransform("caretColor"),
     },
+    cursor: { values: "cursor" },
   },
 })
 

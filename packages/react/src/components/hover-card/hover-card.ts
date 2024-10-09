@@ -1,7 +1,7 @@
 "use client"
 
+import type { Assign } from "@ark-ui/react"
 import { HoverCard as ArkHoverCard } from "@ark-ui/react/hover-card"
-import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -22,6 +22,23 @@ export { useHoverCardStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface HoverCardRootProviderBaseProps
+  extends Assign<
+      ArkHoverCard.RootProviderBaseProps,
+      SlotRecipeProps<"hoverCard">
+    >,
+    UnstyledProp {}
+
+export interface HoverCardRootProviderProps
+  extends HoverCardRootProviderBaseProps {
+  children: React.ReactNode
+}
+
+export const HoverCardRootProvider =
+  withRootProvider<HoverCardRootProviderProps>(ArkHoverCard.Root)
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface HoverCardRootBaseProps
   extends Assign<ArkHoverCard.RootBaseProps, SlotRecipeProps<"hoverCard">>,
     UnstyledProp {}
@@ -34,7 +51,9 @@ export const HoverCardRoot = withRootProvider<HoverCardRootProps>(
   ArkHoverCard.Root,
 )
 
-export const HoverCardRootPropsProvider =
+////////////////////////////////////////////////////////////////////////////////////
+
+export const HoverCardPropsProvider =
   PropsProvider as React.Provider<HoverCardRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -87,3 +106,10 @@ export const HoverCardArrowTip = withContext<
   HTMLDivElement,
   HoverCardArrowTipProps
 >(ArkHoverCard.ArrowTip, "arrowTip", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const HoverCardContext = ArkHoverCard.Context
+
+export interface HoverCardOpenChangeDetails
+  extends ArkHoverCard.OpenChangeDetails {}

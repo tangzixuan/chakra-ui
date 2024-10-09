@@ -25,17 +25,8 @@
     "file": "alert.tsx",
     "component": "Alert",
     "npmDependencies": [],
-    "fileDependencies": []
-  },
-  {
-    "type": "composition",
-    "id": "avatar-overflow-menu",
-    "file": "avatar-overflow-menu.tsx",
-    "component": "AvatarOverflowMenu",
-    "npmDependencies": [],
     "fileDependencies": [
-      "compositions/ui/avatar",
-      "compositions/ui/menu"
+      "compositions/ui/close-button"
     ]
   },
   {
@@ -201,14 +192,6 @@
   },
   {
     "type": "composition",
-    "id": "loading-overlay",
-    "file": "loading-overlay.tsx",
-    "component": "LoadingOverlay",
-    "npmDependencies": [],
-    "fileDependencies": []
-  },
-  {
-    "type": "composition",
     "id": "menu",
     "file": "menu.tsx",
     "component": "Menu",
@@ -235,18 +218,6 @@
   },
   {
     "type": "composition",
-    "id": "overflow-menu",
-    "file": "overflow-menu.tsx",
-    "component": "OverflowMenu",
-    "npmDependencies": [
-      "react-icons"
-    ],
-    "fileDependencies": [
-      "compositions/ui/menu"
-    ]
-  },
-  {
-    "type": "composition",
     "id": "pagination",
     "file": "pagination.tsx",
     "component": "Pagination",
@@ -263,7 +234,6 @@
     "file": "password-input.tsx",
     "component": "PasswordInput",
     "npmDependencies": [
-      "@chakra-ui/hooks",
       "react-icons"
     ],
     "fileDependencies": [
@@ -349,16 +319,6 @@
     "component": "Rating",
     "npmDependencies": [],
     "fileDependencies": []
-  },
-  {
-    "type": "composition",
-    "id": "scrubber-input",
-    "file": "scrubber-input.tsx",
-    "component": "ScrubberInput",
-    "npmDependencies": [],
-    "fileDependencies": [
-      "compositions/ui/tooltip"
-    ]
   },
   {
     "type": "composition",
@@ -471,7 +431,9 @@
     "id": "toggle-tip",
     "file": "toggle-tip.tsx",
     "component": "ToggleTip",
-    "npmDependencies": [],
+    "npmDependencies": [
+      "react-icons"
+    ],
     "fileDependencies": []
   },
   {

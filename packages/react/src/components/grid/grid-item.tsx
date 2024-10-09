@@ -1,12 +1,12 @@
 "use client"
 
-import { compact, mapResponsive } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type ConditionalValue,
   type SystemStyleObject,
   chakra,
 } from "../../styled-system"
+import { compact, mapObject } from "../../utils"
 import type { BoxProps } from "../box/box"
 
 export interface GridItemProps extends BoxProps {
@@ -20,7 +20,7 @@ export interface GridItemProps extends BoxProps {
 }
 
 function spanFn(span?: ConditionalValue<number | "auto">) {
-  return mapResponsive(span, (value) =>
+  return mapObject(span, (value) =>
     value === "auto" ? "auto" : `span ${value}/span ${value}`,
   )
 }

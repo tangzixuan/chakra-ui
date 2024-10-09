@@ -1,5 +1,6 @@
 import { EditPageButton } from "@/components/edit-page-button"
 import { MDXContent } from "@/components/mdx-content"
+import { MDXPagination } from "@/components/mdx-pagination"
 import { PageHeader } from "@/components/page-header"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { Toc } from "@/components/toc"
@@ -37,7 +38,6 @@ export default function Page(props: Props) {
         overflow="auto"
         minHeight="var(--content-height)"
       >
-        <span id="scroll-to-top" />
         <PageHeader
           title={page.title}
           description={page.description}
@@ -45,6 +45,7 @@ export default function Page(props: Props) {
         />
         <Box>
           <MDXContent code={page.code} />
+          <MDXPagination />
         </Box>
       </Stack>
 
@@ -63,9 +64,21 @@ export default function Page(props: Props) {
 
 export const generateMetadata = (props: Props): Metadata => {
   const page = getPageBySlug(props.params.slug)
+
+  const category = page?.slug
+    .replace("docs/", "")
+    .split("/")
+    .slice(0, -1)
+    .join(" > ")
+    ?.replace("-", " ")
+    .replace(/\b\w/g, (l) => l.toUpperCase())
+
   return {
     title: page?.title,
     description: page?.description,
+    openGraph: {
+      images: `/og?title=${page?.title}&category=${category}`,
+    },
   }
 }
 
